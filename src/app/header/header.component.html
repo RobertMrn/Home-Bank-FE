@@ -1,0 +1,12 @@
+<mat-toolbar style="background:#6e12c0; border-radius: 15px; color: aliceblue">
+PoliBank
+  <button *ngIf="isAuthenticated" mat-icon-button class="home-button">
+    <mat-icon>home</mat-icon>
+    <span>Home</span>
+  </button>
+  <button *ngIf="isAuthenticated" mat-icon-button class="logout-button" (click)="onLogOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+
+</mat-toolbar>

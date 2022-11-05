@@ -1,0 +1,42 @@
+<html>
+<div class="alert-danger" *ngIf="areCredentialsWrong"
+     style="width: 30%;
+     height: 50px;
+     border-radius: 15px;
+           background-color: red;
+           color: #ece0e0;
+           margin: auto; text-align: center">
+  <p>{{areCredentialsWrong}}</p>
+</div>
+<div class="form-container mat-elevation-z5 text-center"
+     style="width: 30%; margin-left: 35%;margin-top: 10% ;display: block; border-radius: 15px;height: 250px;
+     background-color: #efecec">
+
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+
+  >
+    <div class="row">
+      &nbsp;
+      &nbsp;
+      <mat-form-field style="width: 60%;margin:auto;display: block">
+        <input matInput
+               type="email"
+               formControlName="email"
+               placeholder="Please introduce your email address">
+      </mat-form-field>
+    </div>
+    <div class="row">
+      <mat-form-field style="width: 60%;margin:auto;display: block">
+        <input matInput
+               type="password"
+               formControlName="password"
+               placeholder="Please introduce your password">
+      </mat-form-field>
+    </div>
+    <button type="submit" style="margin:auto;display: block" mat-raised-button color="primary">Log in</button>
+    &nbsp;
+  </form>
+</div>
+</html>

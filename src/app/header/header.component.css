@@ -1,0 +1,10 @@
+.logout-button{
+  position: absolute;
+  top: 1.25vh;
+  right: 7vh;
+  font-size: 15px;
+}
+
+.home-button{
+  margin-left: 2%;
+}
