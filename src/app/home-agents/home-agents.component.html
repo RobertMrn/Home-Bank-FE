@@ -1,0 +1,110 @@
+<button mat-icon-button *ngIf="sidenav.mode === 'over'" (click)="sidenav.toggle()">
+  <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+  <mat-icon *ngIf="sidenav.opened">close</mat-icon>
+</button>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      class="avatar mat-elevation-z8"
+      src="https://media-cdn2.romaniatv.net/unsafe/870x510/smart/filters:contrast(5):format(webp):quality(80)/https://www.romaniatv.net/wp-content/uploads/2022/10/Tzanca-Uraganu-tarif-de-12.000-de-euro-pentru-4-ore.jpg"
+    />
+    <h4 class="name">{{userName}}</h4>
+    <mat-divider></mat-divider>
+    <button mat-button class="menu-button" (click)="onClickProfile()">
+      <mat-icon>person</mat-icon>
+      <span>Profile</span>
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="loanTitle">
+      <h3>All customer loans</h3>
+    </div>
+
+    <div class="mat-elevation-z0">
+      <table mat-table [dataSource]="dataSource">
+        <ng-container matColumnDef="contractId">
+          <th mat-header-cell *matHeaderCellDef>Contract id</th>
+          <td mat-cell *matCellDef="let element"><a (click)="getContractDetails(element.contractId)">{{element.contractId}}, click to see contract info</a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th mat-header-cell *matHeaderCellDef>Amount</th>
+          <td mat-cell *matCellDef="let element" style="margin-left: 10px">{{element.amount}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amountToBePaid">
+          <th mat-header-cell *matHeaderCellDef>Amount to be paid</th>
+          <td mat-cell *matCellDef="let element">{{element.amountToBePaid}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="creationDate">
+          <th mat-header-cell *matHeaderCellDef>Creation date</th>
+          <td mat-cell *matCellDef="let element">{{element.creationDate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="creditBureauScore">
+          <th mat-header-cell *matHeaderCellDef>Credit bureau score</th>
+          <td mat-cell *matCellDef="let element">{{element.creditBureauScore}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="creditType">
+          <th mat-header-cell *matHeaderCellDef>Credit type</th>
+          <td mat-cell *matCellDef="let element" style="margin-right: 10px">{{element.creditType}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="esDecision">
+          <th mat-header-cell *matHeaderCellDef>ES decision</th>
+          <td mat-cell *matCellDef="let element">{{element.esDecision}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="installment">
+          <th mat-header-cell *matHeaderCellDef>Installment</th>
+          <td mat-cell *matCellDef="let element">{{element.installment}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="interestRate">
+          <th mat-header-cell *matHeaderCellDef>Interest Rate</th>
+          <td mat-cell *matCellDef="let element">{{element.interestRate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastUpdate">
+          <th mat-header-cell *matHeaderCellDef>Last update</th>
+          <td mat-cell *matCellDef="let element">{{element.lastUpdate}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tenure">
+          <th mat-header-cell *matHeaderCellDef>Tenure</th>
+          <td mat-cell *matCellDef="let element">{{element.tenure}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="userId">
+          <th mat-header-cell *matHeaderCellDef>Customer id</th>
+          <td mat-cell *matCellDef="let element"><a style="cursor: pointer"
+                                                 (click)="getUserDetails(element.contractId)">{{element.user}}, click to
+            see customer info</a></td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+
+    </div>
+  </mat-sidenav-content>
+
+
+</mat-sidenav-container>
+

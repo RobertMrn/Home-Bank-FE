@@ -9,9 +9,10 @@ import {Router} from "@angular/router";
   styleUrls: ['./login-component.component.css']
 })
 export class LoginComponentComponent implements OnInit {
-  areCredentialsWrong: string ='';
+  areCredentialsWrong: string = '';
+  isSuccessful = false;
 
-  constructor(private formBuilder: FormBuilder, private logInService: LoginService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, public logInService: LoginService, private route: Router) {
   }
 
   loginForm = this.formBuilder.group({
@@ -27,18 +28,30 @@ export class LoginComponentComponent implements OnInit {
     let password = this.loginForm.get('password')?.value;
     this.logInService.signIn(email!, password!).subscribe({
         next: resData => {
-          // this.decrypt.decryptData(resData);
           console.log(resData);
-          this.route.navigate(['homeCustomers']);
+          this.isSuccessful = true;
+          setTimeout(()=>{
+            let userRole = this.logInService.tokenInfoAsArray[5];
+            if (userRole == 'Customer') {
+              this.route.navigate(['homeCustomers']);
+              this.isSuccessful = false;
+            } else if (userRole == 'Agent') {
+              this.isSuccessful = false;
+              this.route.navigate(['homeAgents']);
+            } else if (userRole == 'Admin') {
+              this.isSuccessful = false;
+              this.route.navigate(['homeAdmin']);
+            }
+          }, 1000);
+
         },
-      error: errorResponse =>{
-          this.areCredentialsWrong=errorResponse;
+        error: errorResponse => {
+          this.areCredentialsWrong = errorResponse;
           console.log(errorResponse);
-      }
+        }
       }
     )
   }
-
 
 
 }

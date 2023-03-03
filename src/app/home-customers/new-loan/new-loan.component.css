@@ -1,0 +1,27 @@
+mat-form-field{
+  margin: auto;
+  display: block;
+  width: 25%;
+}
+
+mat-slider{
+  width: 25%;
+  margin: auto;
+  display: block;
+}
+
+
+label{
+  margin-left: 37.5%;
+  font-family: 'Hammersmith One', sans-serif;
+}
+
+button{
+  margin: auto;
+  display: block;
+}
+
+h1{
+  margin-left: 35%;
+  font-family: 'Hammersmith One', sans-serif;
+}

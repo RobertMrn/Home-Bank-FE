@@ -9,14 +9,14 @@ export class CustomersGuard implements CanActivate {
   }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.logInService.logIn.pipe(
+    return this.logInService.logInCustomer.pipe(
       take(1),
       map(user=>{
         const isLogged = !!user;
         if(isLogged){
           return true;
         }
-        localStorage.clear();
+        this.logInService.logOut();
         return this.route.createUrlTree(['/login']);
       })
     )

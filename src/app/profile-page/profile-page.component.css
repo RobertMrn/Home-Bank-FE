@@ -1,0 +1,32 @@
+row{
+  display: inline;
+}
+
+input{
+  width: 70%;
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  border: none;
+  height: 2.4em;
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: large;
+}
+
+.form-container{
+  width: 700px;
+  display: block;
+  margin: auto;
+  border-radius: 70px;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+  margin-right: 30px;
+}
+

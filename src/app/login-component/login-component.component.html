@@ -1,22 +1,23 @@
 <html>
-<div class="alert-danger" *ngIf="areCredentialsWrong"
-     style="width: 30%;
+<div class="alert alert-danger" *ngIf="logInService.isTokenExpired"
+     style="width: 25%;
      height: 50px;
      border-radius: 15px;
-           background-color: red;
-           color: #ece0e0;
-           margin: auto; text-align: center">
-  <p>{{areCredentialsWrong}}</p>
+     background-color: #dc6262;
+           color: #110101;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  {{logInService.isTokenExpired}}
 </div>
-<div class="form-container mat-elevation-z5 text-center"
+<div class="form-container mat-elevation-z5 text-center" *ngIf="!isSuccessful"
      style="width: 30%; margin-left: 35%;margin-top: 10% ;display: block; border-radius: 15px;height: 250px;
      background-color: #efecec">
 
   <form
     [formGroup]="loginForm"
-    (ngSubmit)="onSubmit()"
-
-  >
+    (ngSubmit)="onSubmit()">
     <div class="row">
       &nbsp;
       &nbsp;
@@ -38,5 +39,10 @@
     <button type="submit" style="margin:auto;display: block" mat-raised-button color="primary">Log in</button>
     &nbsp;
   </form>
+  <p *ngIf="areCredentialsWrong">Error: Email or password are wrong</p>
 </div>
+<div class="mat-spinner" *ngIf="isSuccessful" style="margin-left: 47%; margin-top: 15%">
+  <mat-spinner></mat-spinner>
+</div>
+
 </html>

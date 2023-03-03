@@ -1,0 +1,82 @@
+&nbsp;
+<form
+  [formGroup]="personalDataForm"
+  (ngSubmit)="onSubmit()" *ngIf="!isSuccessful">
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             formControlName="iban"
+             placeholder="IBAN">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Please choose your family situation</mat-label>
+      <mat-select [formGroup]="personalDataForm" formControlName="familySituation" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let familySituation of familySituation" [value]="familySituation">
+          {{familySituation}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field appearance="fill">
+      <mat-label>Please choose your family situation</mat-label>
+      <mat-select [formGroup]="personalDataForm" formControlName="livingSituation" required>
+        <mat-option>--</mat-option>
+        <mat-option *ngFor="let livingSituation of livingSituation" [value]="livingSituation">
+          {{livingSituation}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             formControlName="occupation"
+             placeholder="Occupation">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             type="number"
+             formControlName="numberOfChildren"
+             placeholder="Number of children">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             type="date"
+             formControlName="employmentStartDate"
+             placeholder="Employment start date">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             formControlName="monthlyIncome"
+             placeholder="Monthly income">
+    </mat-form-field>
+  </div>
+
+  <button [disabled]="(!personalDataForm.get('iban')!.dirty||!personalDataForm.get('familySituation')!.dirty||!personalDataForm.get('livingSituation')!.dirty||
+            !personalDataForm.get('numberOfChildren')!.dirty||!personalDataForm.get('occupation')!.dirty||!personalDataForm.get('employmentStartDate')!.dirty||!personalDataForm.get('monthlyIncome')!.dirty)
+            || (personalDataForm.get('iban')!.invalid||personalDataForm.get('familySituation')!.invalid||personalDataForm.get('livingSituation')!.invalid
+            || personalDataForm.get('numberOfChildren')!.invalid|| personalDataForm.get('occupation')!.invalid|| personalDataForm.get('employmentStartDate')!.invalid
+            || personalDataForm.get('monthlyIncome')!.invalid)"
+          mat-raised-button color="accent" type="submit">Agree
+  </button>
+</form>
+<div class="mat-spinner" *ngIf="isSuccessful" style="margin-left: 47%; margin-top: 15%">
+  <mat-spinner></mat-spinner>
+</div>
+

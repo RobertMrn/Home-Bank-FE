@@ -1,0 +1,163 @@
+<div class="alert alert-success" *ngIf="isAccepted"
+     style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #90cece;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  <p>Loan application successfully accepted!</p>
+</div>
+
+<div class="alert alert-danger" *ngIf="isDeclined"
+     style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #dc6262;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  <p>Loan application rejected!</p>
+</div>
+<form [formGroup]="contractDetailsForm">
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="contractId"
+             [readonly]="true"
+             placeholder="Contract id"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="amount"
+             [readonly]="true"
+             placeholder="Amount"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="interestRate"
+             [readonly]="true"
+             placeholder="Interest rate"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="tenure"
+             [readonly]="true"
+             placeholder="Tenure"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="installment"
+             [readonly]="true"
+             placeholder="Installment"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="amountToBePaid"
+             [readonly]="true"
+             placeholder="Amount to be paid"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="creditBureauScore"
+             [readonly]="true"
+             placeholder="Credit bureau score"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="esDecision"
+             [readonly]="true"
+             placeholder="ES decision"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="creditType"
+             [readonly]="true"
+             placeholder="Credit Type"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="creationDate"
+             [readonly]="true"
+             placeholder="Creation Date"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    &nbsp;
+    &nbsp;
+    <mat-form-field style="width: 30%;margin:auto;display: block">
+      <input matInput
+             formControlName="lastUpdate"
+             [readonly]="true"
+             placeholder="Last update"
+             [required]="false">
+    </mat-form-field>
+  </div>
+
+  <div class="button-container">
+  <button *ngIf="contractDetailsService.data?.esDecision==='YELLOW'" (click)="clickAcceptButton()" mat-raised-button color="basic">ACCEPT</button>
+  <button *ngIf="contractDetailsService.data?.esDecision==='YELLOW'" (click)="clickDeclineButton()" mat-raised-button color="warn">DECLINE</button>
+  </div>
+</form>

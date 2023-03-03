@@ -1,0 +1,13 @@
+<div>
+  <h2 class="title-decision-style">Your loan application has been approved!</h2>
+  <img src="../../../../assets/success.png" alt="Loading">
+  <div class="main-data-decision-successful">
+    <h3 class="first-info">ID contract: {{contractId}} </h3>
+    <h3 class="second-info">Date: {{date | date: 'dd/MM/yyyy'}} </h3>
+
+    <div class="space-bottom-print-button">
+      <button mat-raised-button color="basic" style="width: 120px; height: 50px; font-size: large"
+              (click)="onClickPrint()" type="submit" class="next-button">Print</button>
+    </div>
+  </div>
+</div>

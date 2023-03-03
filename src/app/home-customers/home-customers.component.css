@@ -64,3 +64,43 @@ mat-divider {
   margin-bottom: 16px;
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+.loanTitle h3{
+  font-size: 36px;
+  font-family: 'Hammersmith One', sans-serif;
+  margin-left: 220px;
+  margin-top: 64px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+mat-sidenav-container{
+  background-color: #dcdcea;
+}
+
+.mat-stroked-button{
+  height: 70px;
+  width: 230px;
+  font-size: larger;
+  margin-top: 14%;
+  margin-left: 80%;
+  background:#6E12C0FF;
+  color: #dcdcea;
+  border-radius: 10px;
+}
+
+table {
+  width: 80%;
+  margin-top: 20px;
+  margin-left: 220px;
+  margin-right: 10px;
+  overflow: hidden;
+}
+
+mat-paginator{
+  width: 80%;
+  margin-left: 220px;
+  margin-right: 10px;
+}
+
+

@@ -1,32 +1,68 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatSidenav} from "@angular/material/sidenav";
-import {BreakpointObserver} from '@angular/cdk/layout';
+import {LoansForOneUser, RetrieveLoansService} from "../Services/retrieve-loans-service";
+import {LoginService} from "../Services/login-service";
+import {Router} from "@angular/router";
+import {MatPaginator} from "@angular/material/paginator";
+import {MatTableDataSource} from "@angular/material/table";
+
+export interface TableElements {
+  contractId: number;
+  amount: number;
+  amountToBePaid: number;
+  creditType: string;
+  interestRate: number;
+  tenure: number;
+  esDecision: string;
+}
 
 @Component({
   selector: 'app-home-customers',
   templateUrl: './home-customers.component.html',
   styleUrls: ['./home-customers.component.css']
 })
+
+
 export class HomeCustomersComponent implements OnInit {
 
-  constructor(private observer: BreakpointObserver) { }
+  userInfo = JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',');
+  userName = this.userInfo[3] + ' ' + this.userInfo[4];
+  allLoans: LoansForOneUser[] = [];
+  displayedColumns: string[] = ['contractId', 'amount', 'amountToBePaid', 'creditType', 'interestRate', 'tenure', 'esDecision'];
+  isDataRetrieved = false;
+  dataSource = new MatTableDataSource<TableElements>();
 
-  @ViewChild(MatSidenav)
-  sidenav!:MatSidenav;
-
-  ngOnInit(): void {
+  constructor(public retrieveLoansService: RetrieveLoansService, public logInService: LoginService, private route: Router) {
   }
 
-  ngAfterViewInit() {
-    this.observer.observe(['(max-width: 800px']).subscribe((res)=>{
-      if(res.matches){
-        this.sidenav.mode='over';
-        this.sidenav.close();
-      }else{
-        this.sidenav.mode='side';
-        this.sidenav.open();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+
+  ngOnInit(): void {
+    this.getLoanData();
+  }
+
+  getLoanData() {
+    this.retrieveLoansService.getLoanDataForOneUser().subscribe({
+      next: resData => {
+        this.allLoans = resData;
+        this.dataSource = new MatTableDataSource(resData);
+        this.dataSource.paginator = this.paginator;
+        this.isDataRetrieved = true;
+      },
+      error: err => {
+        console.log(err);
       }
-    });
+    })
+  }
+
+  clickNewLoan() {
+    this.route.navigate(['newLoan']);
+  }
+
+  onClickProfile() {
+    this.route.navigate(['profilePage']);
   }
 
 }
+

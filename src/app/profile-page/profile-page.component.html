@@ -1,0 +1,125 @@
+ <div class="alert alert-success" *ngIf="isSuccessful"
+       style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #90cece;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+    <p>Data updated successfully!</p>
+  </div>
+
+ <div class="alert alert-danger" *ngIf="isFailed"
+      style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #dc6262;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+   <p>Data updated failure!</p>
+ </div>
+
+<br>
+
+<div class="form-container mat-elevation-z5 text-center">
+
+  <form [formGroup]="personalDataForm"
+        (ngSubmit)="onSubmit()">
+    <br>
+    <div class="row">
+      <mat-form-field style="width: 40%; margin-left: 8%">
+        <input matInput
+               formControlName="firstName"
+               placeholder="First name">
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field style="width: 40%">
+        <input matInput
+               formControlName="lastName"
+               placeholder="Last name">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="row">
+      <mat-form-field style="width: 40%; margin-left: 8%">
+        <input matInput
+               formControlName="phoneNumber"
+               placeholder="Phone number">
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field appearance="fill" style="width: 40%">
+        <mat-label>Gender</mat-label>
+        <mat-select [formGroup]="personalDataForm" formControlName="gender" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let gender of gender" [value]="gender">
+            {{gender}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+    </div>
+    <div class="row">
+      <mat-form-field appearance="fill" style="width: 40%; margin-left: 8%">
+        <mat-label>Nationality</mat-label>
+        <mat-select [formGroup]="personalDataForm" formControlName="nationality" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let nationality of nationality" [value]="nationality">
+            {{nationality}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field style="width: 40%">
+        <input matInput
+               formControlName="address"
+               placeholder="Address">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="row">
+      <mat-form-field style="width: 40%; margin-left: 8%">
+        <input matInput
+               type="date"
+               min="1952-01-01"
+               max="2005-01-01"
+               formControlName="birthDate"
+               placeholder="Birth date"
+               [readonly]="true">
+      </mat-form-field>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <mat-form-field style="width: 40%">
+        <input matInput
+               formControlName="personalUniqueCode"
+               [readonly]="true"
+               placeholder="Personal unique code">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="row">
+      <mat-form-field style="width: 85%;margin-left:8%">
+        <input matInput
+               formControlName="email"
+               [readonly]="true"
+               placeholder="Email">
+      </mat-form-field>
+    </div>
+    <br>
+    <div class="button-container">
+      <button type="submit" mat-raised-button color="basic" [disabled]="(!personalDataForm.get('firstName')!.dirty&&
+      !personalDataForm.get('lastName')!.dirty&&!personalDataForm.get('address')!.dirty&&!personalDataForm.get('phoneNumber')!.dirty&&
+      !personalDataForm.get('nationality')!.dirty&&!personalDataForm.get('gender')!.dirty)
+      ||
+      (personalDataForm.get('firstName')!.invalid||personalDataForm.get('lastName')!.invalid||personalDataForm.get('address')!.invalid
+      ||personalDataForm.get('phoneNumber')!.invalid||personalDataForm.get('nationality')!.invalid||personalDataForm.get('gender')!.invalid)">
+        Save
+      </button>
+      <button (click)="onCancel()" mat-raised-button color="warn">Cancel</button>
+    </div>
+    <br>
+  </form>
+</div>

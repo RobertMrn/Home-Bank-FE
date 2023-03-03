@@ -1,4 +1,4 @@
-export class LoginModel{
-  constructor(public objectEncoder: string) {
+export class LoginModel {
+  constructor(public response:string) {
   }
 }

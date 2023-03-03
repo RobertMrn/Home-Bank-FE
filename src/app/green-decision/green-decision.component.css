@@ -1,0 +1,38 @@
+img{
+  height: 500px;
+  width: 500px;
+  margin: auto;
+  display: block;
+  background: none;
+}
+
+.title-decision-style{
+  font-weight: 600;
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: xx-large;
+  position: absolute;
+  top: 11vh;
+  left: 63vh;
+}
+
+.space-bottom-print-button{
+  position: absolute;
+  display: block;
+  padding-bottom: 5vh;
+  bottom: 4vh;
+  left: 65vw;
+}
+
+button{
+  width: 50%;
+}
+
+.main-data-decision-successful{
+  left: 30vh;
+  font-weight: 600;
+  font-family: 'Bahnschrift', sans-serif;
+  font-size: x-large;
+  position: absolute;
+}
+
+

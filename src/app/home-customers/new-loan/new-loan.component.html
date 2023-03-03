@@ -1,0 +1,93 @@
+<form
+  [formGroup]="newLoanControl"
+  (ngSubmit)="onSubmit()">
+  <mat-form-field appearance="fill" style="margin-top: 5%">
+    <mat-label>Choose a loan type</mat-label>
+    <mat-select [formGroup]="newLoanControl" formControlName="creditTypes" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let creditTypes of creditTypes" [value]="creditTypes">
+        {{creditTypes}}
+      </mat-option>
+    </mat-select>
+    <!--  <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
+    <!--  <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
+  </mat-form-field>
+
+  <div class="row">
+    <label>Amount (EUR)</label>
+  </div>
+  &nbsp;&nbsp;&nbsp;
+  <div class="row">
+    <label *ngIf="creditType!.value ==''">Please pick a loan type before you introduce your desired amount</label>
+  </div>
+  <br>
+  <mat-slider formControlName="amount" *ngIf="creditType!.value == 'Student loan'"
+              thumbLabel
+              [displayWith]="formatLabel"
+              tickInterval="1000"
+              step="1000"
+              min="0"
+              max="10000"
+              aria-label="units"></mat-slider>
+
+  <mat-slider formControlName="amount" *ngIf="creditType!.value == 'New home'"
+              thumbLabel
+              [displayWith]="formatLabel"
+              tickInterval="1000"
+              step="1000"
+              min="0"
+              max="200000"
+              aria-label="units"></mat-slider>
+
+  <mat-slider formControlName="amount" *ngIf="creditType!.value == 'Car loan'"
+              thumbLabel
+              [displayWith]="formatLabel"
+              tickInterval="1000"
+              step="1000"
+              min="0"
+              max="100000"
+              aria-label="units"></mat-slider>
+
+  <mat-slider formControlName="amount" *ngIf="creditType!.value == 'Personal needs'"
+              thumbLabel
+              [displayWith]="formatLabel"
+              tickInterval="1000"
+              step="1000"
+              min="0"
+              max="50000"
+              aria-label="units"></mat-slider>
+  <label *ngIf="newLoanControl.get('amount')!.dirty">You chose the amount
+    of {{newLoanControl.get('amount')!.value}}</label>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a tenure</mat-label>
+    <mat-select [formGroup]="newLoanControl" formControlName="tenures" required>
+      <mat-option>--</mat-option>
+      <mat-option *ngFor="let tenures of tenures" [value]="tenures">
+        {{tenures}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  &nbsp;&nbsp;&nbsp;
+  <mat-form-field>
+    <input matInput
+           formControlName="interestRates"
+           placeholder="Interest rate"
+           [value]="findInterestRate()"
+           [readonly]="true">
+  </mat-form-field>
+  <button
+    [disabled]="(!newLoanControl.get('creditTypes')!.dirty||!newLoanControl.get('amount')!.dirty||!newLoanControl.get('tenures')!.dirty)
+            || (newLoanControl.get('creditTypes')!.invalid||newLoanControl.get('amount')!.invalid||newLoanControl.get('tenures')!.invalid)
+            || (newLoanControl.get('amount')!.value=='0')"
+    mat-raised-button color="primary" type="submit">Calculate
+  </button>
+
+  <h1 *ngIf="isSuccessfully">Your installment is {{installment}}</h1>
+  <h1 *ngIf="isSuccessfully">Your amount to be paid is {{sumToBePaid}}</h1>
+
+  <button *ngIf="isSuccessfully" style="margin-left: 90%; margin-top: 3%; width: 8%; font-size: 1em" mat-raised-button
+          color="accent" (click)="onClickNext()">Next
+  </button>
+</form>
+
