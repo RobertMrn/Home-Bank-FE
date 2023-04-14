@@ -4,6 +4,7 @@ import {LoginService} from "../Services/login-service";
 import {Router} from "@angular/router";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {PhotoProfilePathService} from "../Services/profile-path-service";
 
 export interface TableElements {
   contractId: number;
@@ -30,8 +31,10 @@ export class HomeCustomersComponent implements OnInit {
   displayedColumns: string[] = ['contractId', 'amount', 'amountToBePaid', 'creditType', 'interestRate', 'tenure', 'esDecision'];
   isDataRetrieved = false;
   dataSource = new MatTableDataSource<TableElements>();
+  fileReader = '';
 
-  constructor(public retrieveLoansService: RetrieveLoansService, public logInService: LoginService, private route: Router) {
+  constructor(public retrieveLoansService: RetrieveLoansService, public logInService: LoginService, private route: Router,
+              private photoProfileService: PhotoProfilePathService) {
   }
 
 
@@ -40,6 +43,7 @@ export class HomeCustomersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getLoanData();
+    this.getPhotoProfilePath();
   }
 
   getLoanData() {
@@ -64,5 +68,16 @@ export class HomeCustomersComponent implements OnInit {
     this.route.navigate(['profilePage']);
   }
 
+  getPhotoProfilePath() {
+    this.photoProfileService.getPhotoProfilePath().subscribe({
+      next: value => {
+        this.fileReader = value.path;
+      }
+    })
+  }
+
+  clickTrading() {
+    this.route.navigate(['stockTrading']);
+  }
 }
 

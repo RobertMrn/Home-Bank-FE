@@ -1,0 +1,30 @@
+p {
+  font-family: Lato;
+}
+#chart {
+  max-width: 5000px;
+  margin-left: 900px;
+  margin-bottom: 100px;
+}
+
+.ticker h3{
+  display: inline;
+  font-size: 36px;
+  font-family: 'Hammersmith One', sans-serif;
+  margin-left: 220px;
+  margin-top: 64px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+
+
+.mat-raised-button{
+  /*display: inline;*/
+  /*height: 70px;*/
+  /*width: 40px;*/
+  /*font-size: larger;*/
+  /*background: #a80606;*/
+  /*color: #dcdcea;*/
+  /*border-radius: 10px;*/
+}

@@ -55,4 +55,11 @@ export class HeaderComponent implements OnInit, OnDestroy {
     }
   }
 
+  onClickStocks() {
+    this.route.navigate(['stockTrading']);
+  }
+
+  onPortfolio() {
+    this.route.navigate(['portfolio']);
+  }
 }

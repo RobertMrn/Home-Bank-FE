@@ -1,119 +1,119 @@
-<form
-  [formGroup]="newUserControl"
-  (ngSubmit)="onSubmit()" *ngIf="!isSuccessful">
-  <mat-form-field appearance="fill" style="margin-top: 5%">
-    <mat-label>Choose role</mat-label>
-    <mat-select [formGroup]="newUserControl" formControlName="userRole" required>
-      <mat-option>--</mat-option>
-      <mat-option *ngFor="let userRole of roles" [value]="userRole">
-        {{userRole}}
-      </mat-option>
-    </mat-select>
-    <!--  <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
-    <!--  <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
-  </mat-form-field>
-
-  <div class="row">
-    <mat-form-field appearance="fill">
-      <mat-label>Gender</mat-label>
-      <mat-select [formGroup]="newUserControl" formControlName="gender" required>
+<div *ngIf="userDetails.isFileSelected||userDetails.isFileRefused">
+  <form
+    [formGroup]="newUserControl"
+    (ngSubmit)="onSubmit()" *ngIf="!isSuccessful">
+    <mat-form-field appearance="fill" style="margin-top: 5%">
+      <mat-label>Choose role</mat-label>
+      <mat-select [formGroup]="newUserControl" formControlName="userRole" required>
         <mat-option>--</mat-option>
-        <mat-option *ngFor="let gender of gender" [value]="gender">
-          {{gender}}
+        <mat-option *ngFor="let userRole of roles" [value]="userRole">
+          {{userRole}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
 
-  <div class="row">
-    <mat-form-field appearance="fill">
-      <mat-label>Nationality</mat-label>
-      <mat-select [formGroup]="newUserControl" formControlName="nationality" required>
-        <mat-option>--</mat-option>
-        <mat-option *ngFor="let nationality of nationality" [value]="nationality">
-          {{nationality}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Gender</mat-label>
+        <mat-select [formGroup]="newUserControl" formControlName="gender" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let gender of gender" [value]="gender">
+            {{gender}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="firstName"
-             placeholder="First name">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field appearance="fill">
+        <mat-label>Nationality</mat-label>
+        <mat-select [formGroup]="newUserControl" formControlName="nationality" required>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let nationality of nationality" [value]="nationality">
+            {{nationality}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="lastName"
-             placeholder="Last name">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="firstName"
+               placeholder="First name">
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             type="date"
-             formControlName="birthDate"
-             placeholder="Birth date">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="lastName"
+               placeholder="Last name">
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="phoneNumber"
-             placeholder="Phone number">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               type="date"
+               formControlName="birthDate"
+               placeholder="Birth date">
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="address"
-             placeholder="Address">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="phoneNumber"
+               placeholder="Phone number">
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="personalUniqueCode"
-             placeholder="PersonalUniqueCode">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="address"
+               placeholder="Address">
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="hashedPassword"
-             placeholder="Password">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="personalUniqueCode"
+               placeholder="PersonalUniqueCode">
+      </mat-form-field>
+    </div>
 
-  <div class="row">
-    <mat-form-field>
-      <input matInput
-             formControlName="email"
-             placeholder="Email">
-    </mat-form-field>
-  </div>
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="hashedPassword"
+               placeholder="Password">
+      </mat-form-field>
+    </div>
+
+    <div class="row">
+      <mat-form-field>
+        <input matInput
+               formControlName="email"
+               placeholder="Email">
+      </mat-form-field>
+    </div>
 
 
-  <button
-    [disabled]="(!newUserControl.get('firstName')!.dirty||!newUserControl.get('lastName')!.dirty||!newUserControl.get('email')!.dirty
+    <button
+      [disabled]="(!newUserControl.get('firstName')!.dirty||!newUserControl.get('lastName')!.dirty||!newUserControl.get('email')!.dirty
     ||!newUserControl.get('phoneNumber')!.dirty||!newUserControl.get('gender')!.dirty||!newUserControl.get('address')!.dirty||!newUserControl.get('nationality')!.dirty
     ||!newUserControl.get('birthDate')!.dirty||!newUserControl.get('personalUniqueCode')!.dirty||!newUserControl.get('userRole')!.dirty||!newUserControl.get('hashedPassword')!.dirty)
             || (newUserControl.get('firstName')!.invalid||newUserControl.get('lastName')!.invalid||newUserControl.get('email')!.invalid
     || newUserControl.get('phoneNumber')!.invalid|| newUserControl.get('gender')!.invalid|| newUserControl.get('address')!.invalid
     || newUserControl.get('nationality')!.invalid|| newUserControl.get('birthDate')!.invalid|| newUserControl.get('personalUniqueCode')!.invalid|| newUserControl.get('userRole')!.invalid
     || newUserControl.get('hashedPassword')!.invalid)"
-    mat-raised-button color="primary" type="submit">Save
-  </button>
-</form>
-<div class="mat-spinner" *ngIf="isSuccessful" style="margin-left: 47%; margin-top: 15%">
-  <mat-spinner></mat-spinner>
+      mat-raised-button color="primary" type="submit">Save
+    </button>
+  </form>
+  <div class="mat-spinner" *ngIf="isSuccessful" style="margin-left: 47%; margin-top: 15%">
+    <mat-spinner></mat-spinner>
+  </div>
 </div>

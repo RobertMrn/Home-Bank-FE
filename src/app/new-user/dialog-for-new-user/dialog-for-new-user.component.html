@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Add new user?</h2>
+<p>Upload a picture of his identity card to automatically complete his data in corresponding field.</p>
+<p>Note: Please review the recognised data so there won't be mistakes.</p>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="false"  (click)="clickCancel()">Cancel</button>
+  <input style="margin-left: 15px" type="file" class="file-input" accept=".png,.jpeg,.jpg"
+         (change)="onFileSelectedForDataRecognition($event)">
+  <button style="margin-left: 10px" *ngIf="userDetailsService.isFileSelected" mat-button [mat-dialog-close]="true">Save</button>
+  <div class="mat-spinner" *ngIf="isLoading">
+    <mat-spinner></mat-spinner>
+  </div>
+</mat-dialog-actions>

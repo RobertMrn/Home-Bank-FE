@@ -1,0 +1,76 @@
+<div class="ticker">
+  <h3>{{ticker}}</h3>
+  <h3 style="margin-left: 60%">{{realTimePrice}}</h3>
+</div>
+
+
+
+<br>
+<div class="transactionContent">
+  <button type="button" mat-raised-button style="background: #047307; margin-left: 81.5%" color="primary" (click)="startBuyTransaction()">Buy</button>&nbsp;
+  <button *ngIf="isStockInPortfolioVar" type="button" mat-raised-button color="warn" (click)="startSellTransaction()">Sell
+  </button>&nbsp;
+</div>
+<img style="display: block; margin: auto"
+     class="avatar mat-elevation-z8"
+     [src]="logo"
+/>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<mat-tab-group mat-stretch-tabs>
+  <mat-tab label="Summary">
+    <div class="row summary-content" >
+      <div class="col-md summary-left text-mob">
+        <div class="summary-price" style="padding: 10px; width: 60%;">
+          <table>
+            <tr>
+              <th>High Price:</th>
+              <td>{{ highestPrice }}</td>
+            </tr>
+            <tr>
+              <th>Low Price:</th>
+              <td>{{ lowestPrice }}</td>
+            </tr>
+            <tr>
+              <th>Open Price:</th>
+              <td>{{ openPrice }}</td>
+            </tr>
+            <tr>
+              <th>Prev. Close:</th>
+              <td>{{ previousClose }}</td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="summary-about" style="padding: 10px;">
+          <p style="text-align: center; margin-right: 70%"><strong><u>About the company</u></strong></p>
+          <div style="margin-bottom: 4px;"><strong>Name: </strong>{{ nameOfCompany }}</div>
+          <div style="margin-bottom: 4px;"><strong>Market Cap: </strong>{{ marketCap }}</div>
+          <div style="margin-bottom: 4px; max-width: 400px"><strong>Description: </strong>{{ description }}</div>
+          <div style="margin-bottom: 4px;"><strong>Webpage: </strong><a #weblink href=""
+                                                                        target="_blank">{{ webUrl }}</a></div>
+        </div>
+      </div>
+
+      <div class="col-md summary-chart">
+        <div id="chart">
+          <apx-chart
+            [series]="chartOptions.series!"
+            [chart]="chartOptions.chart!"
+            [xaxis]="chartOptions.xaxis!"
+            [yaxis]="chartOptions.yaxis!"
+            [title]="chartOptions.title!"
+          ></apx-chart>
+        </div>
+      </div>
+
+    </div>
+  </mat-tab>
+  <mat-tab label="Top News"> Content 2</mat-tab>
+  <mat-tab label="Charts"> Content 3</mat-tab>
+</mat-tab-group>

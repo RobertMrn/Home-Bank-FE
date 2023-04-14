@@ -6,6 +6,7 @@ import {UserDetailsService} from "../Services/user-details-service";
 import {ContractDetailsService} from "../Services/contract-details-service";
 import {MatPaginator} from "@angular/material/paginator";
 import {MatTableDataSource} from "@angular/material/table";
+import {PhotoProfilePathService} from "../Services/profile-path-service";
 
 export interface TableElements {
   contractId: string;
@@ -30,13 +31,14 @@ export interface TableElements {
 export class HomeAgentsComponent implements OnInit {
   public static contractId: number;
   allLoans: LoansForAllUsers[] = [];
-
+  fileReader = '';
 
   userInfo = JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',');
   userName = this.userInfo[3] + ' ' + this.userInfo[4];
 
   constructor(public  retrieveLoansService: RetrieveLoansService, public logInService: LoginService, private route: Router,
-              private userDetailsService: UserDetailsService, private contractDetailsService: ContractDetailsService) { }
+              private userDetailsService: UserDetailsService, private contractDetailsService: ContractDetailsService,
+              private photoProfileService: PhotoProfilePathService) { }
 
   displayedColumns: string[] = ['contractId', 'amount', 'amountToBePaid', 'creationDate', 'creditBureauScore', 'creditType', 'esDecision', 'installment', 'interestRate', 'lastUpdate', 'tenure', 'userId'];
 
@@ -47,6 +49,7 @@ export class HomeAgentsComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllLoansData();
+    this.getPhotoProfilePath();
   }
 
   getAllLoansData(){
@@ -78,6 +81,14 @@ export class HomeAgentsComponent implements OnInit {
 
   onClickProfile(){
     this.route.navigate(['profilePage']);
+  }
+
+  getPhotoProfilePath() {
+    this.photoProfileService.getPhotoProfilePath().subscribe({
+      next: value => {
+        this.fileReader = value.path;
+      }
+    })
   }
 
 }

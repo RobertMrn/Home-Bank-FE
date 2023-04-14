@@ -8,7 +8,7 @@ import {LoginService} from "./Services/login-service";
 })
 export class AppComponent implements OnInit {
   title = 'licentaFE';
-  tokenExpirationDate = new Date(JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',')[6]);
+  //tokenExpirationDate = new Date(JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',')[6].substring(0,19));
 
   constructor(private logInService: LoginService) {
   }
@@ -20,9 +20,12 @@ export class AppComponent implements OnInit {
         this.logInService.logOut();
       }
     }
-    console.log(JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',')[6]);
-    console.log(this.tokenExpirationDate.getTime());
-    console.log(new Date());
+    // let x = JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',')[6];
+    // let y = x;
+    // console.log(new Date(y));
+    // console.log(JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',')[6]);
+    // console.log(this.tokenExpirationDate);
+    // console.log(new Date());
     this.logInService.autoLogin();
   }
 

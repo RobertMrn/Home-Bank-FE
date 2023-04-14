@@ -1,0 +1,75 @@
+<div class="container">
+
+  <form [formGroup]="formGroup" >
+    <br>
+    <mat-form-field style="margin: auto; display:block; width: 40%">
+      <mat-label>
+        Enter Stock Ticker Symbol
+      </mat-label>
+      <input formControlName="ticker" matInput type="text" [matAutocomplete]="auto" />
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let item of filteredOptions" [value]="item">
+          {{item}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+</div>
+<mat-sidenav-container>
+<mat-sidenav-content>
+  <div class="loanTitle">
+    <h3>All tickers</h3>
+  </div>
+
+  <div class="mat-elevation-z0">
+    <table mat-table [dataSource]="dataSource">
+
+      <ng-container matColumnDef="symbol">
+        <th mat-header-cell *matHeaderCellDef>Ticker</th>
+        <td mat-cell *matCellDef="let element"><a (click)="getTickerInfo(element.symbol)">{{element.symbol}}</a></td>
+      </ng-container>
+
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="currency">
+        <th mat-header-cell *matHeaderCellDef>Currency</th>
+        <td mat-cell *matCellDef="let element"> {{element.currency}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="exchange">
+        <th mat-header-cell *matHeaderCellDef>Exchange</th>
+        <td mat-cell *matCellDef="let element"> {{element.exchange}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef>Type</th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mic_code">
+        <th mat-header-cell *matHeaderCellDef>Mic code</th>
+        <td mat-cell *matCellDef="let element"> {{element.mic_code}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="country">
+        <th mat-header-cell *matHeaderCellDef>Country</th>
+        <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+
+  </div>
+</mat-sidenav-content>
+</mat-sidenav-container>

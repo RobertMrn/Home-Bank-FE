@@ -5,6 +5,13 @@
   font-size: 15px;
 }
 
+.trading-button{
+  position: absolute;
+  top: 2.5vh;
+  right: 15vh;
+  font-size: 15px;
+}
+
 .home-button{
   margin-left: 2%;
 }

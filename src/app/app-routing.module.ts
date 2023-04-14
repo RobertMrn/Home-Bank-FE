@@ -16,6 +16,11 @@ import {CustomersGuard} from "./Services/CustomersGuard";
 import {AgentGuard} from "./Services/AgentGuard";
 import {HomeAdminComponent} from "./home-admin/home-admin.component";
 import {NewUserComponent} from "./new-user/new-user.component";
+import {ForgotPasswordComponent} from "./login-component/forgot-password/forgot-password.component";
+import {ChangePasswordComponent} from "./login-component/forgot-password/new-password/change-password.component";
+import {StockTradingComponent} from "./stock-trading/stock-trading.component";
+import {ChartComponentCustom} from "./chart/chart-component-custom.component";
+import {PortfolioComponent} from "./stock-trading/portofolio/portfolio.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponentComponent, canActivate: [LoginGuard]},
@@ -25,9 +30,14 @@ const routes: Routes = [
   {path: 'homeAgents', component: HomeAgentsComponent, canActivate:[AgentGuard]},
   {path: 'homeAdmin', component: HomeAdminComponent},
   {path: 'newUser', component: NewUserComponent},
+  {path: 'resetPassword', component: ForgotPasswordComponent},
+  {path: 'newPassword', component: ChangePasswordComponent},
   {path: 'userDetails', component: UserDetailsComponent},
   {path: 'contractDetails', component: ContractDetailsComponent},
   {path: 'profilePage', component: ProfilePageComponent},
+  {path: 'stockTrading', component: StockTradingComponent},
+  {path: 'chart', component: ChartComponentCustom},
+  {path: 'portfolio', component: PortfolioComponent},
   {path: 'greenDecision', component: GreenDecisionComponent},
   {path: 'yellowDecision', component: YellowDecisionComponent},
   {path: 'redDecision', component: RedDecisionComponent},

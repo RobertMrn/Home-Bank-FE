@@ -10,6 +10,10 @@ export class Interceptor implements HttpInterceptor {
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    if(req.url.startsWith('https://api.polygon.io')){
+      let clonedRequest = req.clone({headers: req.headers.set('Authorization', 'Bearer LPRXuQuJTNlHVt4Anzs7fA5pRzGNJMcu')});
+      return next.handle(clonedRequest);
+    }
     if (localStorage.getItem('jwtToken') === null) {
       let clonedRequest = req.clone({headers: req.headers.set('Authorization', 'Bearer ')});
       return next.handle(clonedRequest);
@@ -26,4 +30,5 @@ export class Interceptor implements HttpInterceptor {
       }))
     }
   }
+
 }

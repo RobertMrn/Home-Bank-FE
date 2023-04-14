@@ -10,4 +10,24 @@
     <mat-icon>logout</mat-icon>
     <span>Logout</span>
   </button>
+  <button *ngIf="isAuthenticatedCustomer" class="trading-button" mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>timeline</mat-icon>
+    <span>Stocks</span>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onClickStocks()">
+      <mat-icon>list</mat-icon>
+      Stocks list
+    </button>
+    <button mat-menu-item (click)="onPortfolio()">
+      <mat-icon>book</mat-icon>
+      Portfolio
+    </button>
+  </mat-menu>
+
+<!--  <button *ngIf="isAuthenticatedCustomer" mat-icon-button-->
+<!--          class="trading-button" (click)="onClickStocks()">-->
+<!--    <mat-icon>timeline</mat-icon>-->
+<!--    <span>Stocks</span>-->
+<!--  </button>-->
 </mat-toolbar>

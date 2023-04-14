@@ -5,7 +5,8 @@ import {MatTableDataSource} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
 import {UserDetailsService} from "../Services/user-details-service";
 import {MatDialog} from "@angular/material/dialog";
-import {DialogComponent} from "../dialog/dialog.component";
+import {DialogComponent} from "../dialog-for-delete-users/dialog.component";
+import {PhotoProfilePathService} from "../Services/profile-path-service";
 
 export interface TableElements {
   userId: number;
@@ -16,6 +17,7 @@ export interface TableElements {
   address: string;
   nationality: string;
   birthDate: Date;
+  role: string;
   toDelete: string;
 }
 
@@ -29,9 +31,11 @@ export class HomeAdminComponent implements OnInit {
   userName = this.userInfo[3] + ' ' + this.userInfo[4];
   dataSource = new MatTableDataSource<TableElements>();
   displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'phoneNumber', 'gender', 'address', 'nationality', 'birthDate', 'toDelete'];
+  fileReader = '';
+
 
   constructor(private logInService: LoginService, private route: Router, private userService: UserDetailsService
-    , private dialog: MatDialog) {
+    , private dialog: MatDialog, private photoProfileService: PhotoProfilePathService) {
   }
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -39,6 +43,7 @@ export class HomeAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUsersInfo();
+    this.getPhotoProfilePath();
   }
 
   onClickProfile() {
@@ -53,6 +58,7 @@ export class HomeAdminComponent implements OnInit {
     this.userService.getAllUsers().subscribe({
       next: value => {
         this.dataSource = new MatTableDataSource(value);
+        console.log(this.dataSource.filteredData);
         this.dataSource.paginator = this.paginator;
       },
       error: err => {
@@ -70,6 +76,14 @@ export class HomeAdminComponent implements OnInit {
             window.location.reload();
           }
         });
+      }
+    })
+  }
+
+  getPhotoProfilePath() {
+    this.photoProfileService.getPhotoProfilePath().subscribe({
+      next: value => {
+        this.fileReader = value.path;
       }
     })
   }

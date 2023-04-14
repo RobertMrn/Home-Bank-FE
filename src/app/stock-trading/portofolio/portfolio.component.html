@@ -1,0 +1,42 @@
+<mat-sidenav-container>
+  <mat-sidenav-content>
+    <div class="loanTitle">
+      <h3>Portfolio</h3>
+    </div>
+
+    <div class="mat-elevation-z0">
+      <table mat-table [dataSource]="dataSource">
+
+        <ng-container matColumnDef="stockId">
+          <th mat-header-cell *matHeaderCellDef>Stock id</th>
+          <td mat-cell *matCellDef="let element"> {{element.stockId}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="ticker">
+          <th mat-header-cell *matHeaderCellDef>Ticker</th>
+          <td mat-cell *matCellDef="let element"><a (click)="getTickerInfo(element.ticker)">{{element.ticker}}</a></td>
+        </ng-container>
+
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let element"> {{element.quantity}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totallyBought">
+          <th mat-header-cell *matHeaderCellDef>Totally bought</th>
+          <td mat-cell *matCellDef="let element"> {{element.totallyBought}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+
+      <mat-paginator [pageSizeOptions]="[3, 6, 9]"
+                     showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

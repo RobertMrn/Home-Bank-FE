@@ -6,7 +6,7 @@
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <img
       class="avatar mat-elevation-z8"
-      src="https://media-cdn2.romaniatv.net/unsafe/870x510/smart/filters:contrast(5):format(webp):quality(80)/https://www.romaniatv.net/wp-content/uploads/2022/10/Tzanca-Uraganu-tarif-de-12.000-de-euro-pentru-4-ore.jpg"
+      [src]="fileReader"
     />
     <h4 class="name">{{userName}}</h4>
     <mat-divider></mat-divider>
@@ -70,9 +70,9 @@
           <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="toDelete">
+        <ng-container matColumnDef="toDelete" >
           <th mat-header-cell *matHeaderCellDef></th>
-          <td mat-cell *matCellDef="let element"><mat-icon (click)="deleteUser(element.userId) ">delete</mat-icon></td>
+          <td mat-cell *matCellDef="let element"><mat-icon style="margin-left: 40%" (click)="deleteUser(element.userId) ">delete</mat-icon></td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

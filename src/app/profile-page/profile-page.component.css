@@ -2,6 +2,17 @@ row{
   display: inline;
 }
 
+.file-input {
+  margin-right: 200%;
+}
+
+img{
+  width: 200px;
+  margin: auto;
+  display: block;
+  border-radius: 20px;
+}
+
 input{
   width: 70%;
   display: block;

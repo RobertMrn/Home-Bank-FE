@@ -6,7 +6,7 @@
   <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
     <img
       class="avatar mat-elevation-z8"
-      src="https://media-cdn2.romaniatv.net/unsafe/870x510/smart/filters:contrast(5):format(webp):quality(80)/https://www.romaniatv.net/wp-content/uploads/2022/10/Tzanca-Uraganu-tarif-de-12.000-de-euro-pentru-4-ore.jpg"
+      [src]="fileReader"
     />
     <h4 class="name">{{userName}}</h4>
     <mat-divider></mat-divider>
@@ -101,6 +101,7 @@
                      showFirstLastButtons
                      aria-label="Select page of periodic elements">
       </mat-paginator>
+      <app-chat-bot></app-chat-bot>
 
     </div>
   </mat-sidenav-content>

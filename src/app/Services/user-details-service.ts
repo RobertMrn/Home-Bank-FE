@@ -3,7 +3,7 @@ import {HttpClient, HttpParams} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {catchError, tap, throwError} from "rxjs";
 import {TableElements} from "../home-admin/home-admin.component";
-import {FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 export interface UserDetailsResponse {
   userId: string,
@@ -31,10 +31,22 @@ export interface AddUserResponse {
 export class UserDetailsService {
   requestParams = new HttpParams();
   data: UserDetailsResponse | undefined;
+  isFileSelected = false;
+  isFileRefused = false;
 
 
-  constructor(private http: HttpClient, private route: Router) {
+
+  constructor(private http: HttpClient, private route: Router,private formBuilder: FormBuilder) {
   }
+  public autoCompleteForm = this.formBuilder.group({
+    firstName: ['', [Validators.required, Validators.pattern("[a-zA-Z- ]*"), Validators.minLength(4)]],
+    lastName: ['', [Validators.required, Validators.pattern("[a-zA-Z- ]*"), Validators.minLength(4)]],
+    address: ['', [Validators.required]],
+    gender: ['', [Validators.required]],
+    town: ['', [Validators.required]],
+    nationality: ['', [Validators.required]]
+  })
+
 
   getUserDetails(contractId: string) {
     this.requestParams = this.requestParams.set('contractId', contractId);

@@ -27,10 +27,16 @@
 <br>
 
 <div class="form-container mat-elevation-z5 text-center">
-
   <form [formGroup]="personalDataForm"
         (ngSubmit)="onSubmit()">
     <br>
+    <img
+      class="avatar mat-elevation-z8"
+      [src]="fileReader"
+    />
+    <input type="file" class="file-input" accept=".png,.jpeg,.jpg"
+           (change)="onFileSelectedForProfilePhoto($event)">
+
     <div class="row">
       <mat-form-field style="width: 40%; margin-left: 8%">
         <input matInput

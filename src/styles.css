@@ -3,3 +3,8 @@
 html{
   background-color: #dcdcea;
 }
+
+.float-button{
+  margin-right: 0.00001%;
+  margin-bottom: 80px;
+}
