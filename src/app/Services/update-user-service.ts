@@ -23,4 +23,8 @@ export class UpdateUserService {
       personalUniqueCode: formBuilder.get('personalUniqueCode')?.value
     })
   }
+
+  updatePassword(newPassword: string){
+
+  }
 }

@@ -2,6 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {LoginService} from "../Services/login-service";
 import {Router} from "@angular/router";
+import {DialogForNewUserComponent} from "../new-user/dialog-for-new-user/dialog-for-new-user.component";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  DialogForChangingPasswordComponent
+} from "./dialog-for-changing-password/dialog-for-changing-password.component";
 
 @Component({
   selector: 'app-login-component',
@@ -12,7 +17,7 @@ export class LoginComponentComponent implements OnInit {
   areCredentialsWrong: string = '';
   isSuccessful = false;
 
-  constructor(private formBuilder: FormBuilder, public logInService: LoginService, private route: Router) {
+  constructor(private formBuilder: FormBuilder, public logInService: LoginService, private route: Router, private dialog: MatDialog) {
   }
 
   loginForm = this.formBuilder.group({
@@ -30,17 +35,23 @@ export class LoginComponentComponent implements OnInit {
         next: resData => {
           console.log(resData);
           this.isSuccessful = true;
-          setTimeout(()=>{
-            let userRole = this.logInService.tokenInfoAsArray[5];
-            if (userRole == 'Customer') {
-              this.route.navigate(['homeCustomers']);
-              this.isSuccessful = false;
-            } else if (userRole == 'Agent') {
-              this.isSuccessful = false;
-              this.route.navigate(['homeAgents']);
-            } else if (userRole == 'Admin') {
-              this.isSuccessful = false;
-              this.route.navigate(['homeAdmin']);
+          setTimeout(() => {
+            let newUser = this.logInService.tokenInfoAsArray[7];
+            console.log(newUser);
+            if (newUser=='newUser') {
+              const dialogRef = this.dialog.open(DialogForChangingPasswordComponent);
+            } else {
+              let userRole = this.logInService.tokenInfoAsArray[5];
+              if (userRole == 'Customer') {
+                this.route.navigate(['homeCustomers']);
+                this.isSuccessful = false;
+              } else if (userRole == 'Agent') {
+                this.isSuccessful = false;
+                this.route.navigate(['homeAgents']);
+              } else if (userRole == 'Admin') {
+                this.isSuccessful = false;
+                this.route.navigate(['homeAdmin']);
+              }
             }
           }, 1000);
 
@@ -50,7 +61,7 @@ export class LoginComponentComponent implements OnInit {
           console.log(errorResponse);
         }
       }
-    )
+    );
   }
 
 

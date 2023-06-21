@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {UserDetailsService} from "../Services/user-details-service";
 import {Router} from "@angular/router";
-import * as Tesseract from "tesseract.js";
-import {DialogComponent} from "../dialog-for-delete-users/dialog.component";
 import {MatDialog} from "@angular/material/dialog";
 import {DialogForNewUserComponent} from "./dialog-for-new-user/dialog-for-new-user.component";
 
@@ -35,7 +33,7 @@ export class NewUserComponent implements OnInit {
     birthDate: ['', [Validators.required]],
     personalUniqueCode: ['', [Validators.required]],
     userRole: ['', [Validators.required]],
-    hashedPassword: ['', [Validators.required]]
+    hashedPassword: ['', [Validators.required, Validators.pattern(/^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()])[a-zA-Z0-9!@#$%^&*()]{8,}$/)]]
   });
 
   ngOnInit(): void {

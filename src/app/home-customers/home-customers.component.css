@@ -71,7 +71,7 @@ mat-divider {
   margin-left: 220px;
   margin-top: 64px;
   align-items: center;
-  justify-content: flex-start;
+  display: inline;
 }
 
 mat-sidenav-container{
@@ -82,7 +82,7 @@ mat-sidenav-container{
   height: 70px;
   width: 230px;
   font-size: larger;
-  margin-top: 7.5%;
+  margin-top: 13%;
   display: block;
   margin-left: 75%;
   background:#6E12C0FF;

@@ -8,7 +8,7 @@
       </mat-label>
       <input formControlName="ticker" matInput type="text" [matAutocomplete]="auto" />
       <mat-autocomplete #auto="matAutocomplete">
-        <mat-option *ngFor="let item of filteredOptions" [value]="item">
+        <mat-option *ngFor="let item of filteredOptions" [value]="item" (click)="getTickerInfo(item)">
           {{item}}
         </mat-option>
       </mat-autocomplete>

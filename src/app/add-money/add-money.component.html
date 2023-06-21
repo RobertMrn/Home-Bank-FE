@@ -1,0 +1,80 @@
+<div class="alert alert-success" *ngIf="addSuccess"
+     style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #ffd740;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  <p>Success!</p>
+</div>
+<div class="alert alert-danger" *ngIf="addFailed"
+     style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #dc6262;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  <p>Failed! Please try again later.</p>
+</div>
+
+<form
+  [formGroup]="addMoneyControl"
+  (ngSubmit)="onSubmit()">
+
+
+  <br>
+  &nbsp;&nbsp;
+  &nbsp;
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             type="number"
+             min="1"
+             formControlName="amount"
+             placeholder="Amount"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             type="date"
+             [min]="currentDate | date:'yyyy-MM-dd'"
+             formControlName="expiryDate"
+             placeholder="Expiry date"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             formControlName="cardNumber"
+             placeholder="Card Number"
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="row">
+    <mat-form-field>
+      <input matInput
+             formControlName="cvv"
+             placeholder="CVV"
+      >
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="(!addMoneyControl.get('amount')!.dirty&&
+      !addMoneyControl.get('expiryDate')!.dirty&&!addMoneyControl.get('cardNumber')!.dirty&&!addMoneyControl.get('cvv')!.dirty)
+      ||
+      (addMoneyControl.get('amount')!.invalid||addMoneyControl.get('expiryDate')!.invalid||addMoneyControl.get('cardNumber')!.invalid
+      ||addMoneyControl.get('cvv')!.invalid)">Add money</button>
+</form>
+

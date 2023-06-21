@@ -9,8 +9,6 @@
         {{creditTypes}}
       </mat-option>
     </mat-select>
-    <!--  <mat-error *ngIf="animalControl.hasError('required')">Please choose an animal</mat-error>-->
-    <!--  <mat-hint>{{animalControl.value?.sound}}</mat-hint>-->
   </mat-form-field>
 
   <div class="row">
@@ -57,7 +55,7 @@
               max="50000"
               aria-label="units"></mat-slider>
   <label *ngIf="newLoanControl.get('amount')!.dirty">You chose the amount
-    of {{newLoanControl.get('amount')!.value}}</label>
+    of {{newLoanControl.get('amount')!.value}} EUR</label>
 
   <mat-form-field appearance="fill">
     <mat-label>Choose a tenure</mat-label>
@@ -83,8 +81,8 @@
     mat-raised-button color="primary" type="submit">Calculate
   </button>
 
-  <h1 *ngIf="isSuccessfully">Your installment is {{installment}}</h1>
-  <h1 *ngIf="isSuccessfully">Your amount to be paid is {{sumToBePaid}}</h1>
+  <h1 *ngIf="isSuccessfully">Your installment is {{installment}} EUR</h1>
+  <h1 *ngIf="isSuccessfully">Your amount to be paid is {{sumToBePaid}} EUR</h1>
 
   <button *ngIf="isSuccessfully" style="margin-left: 90%; margin-top: 3%; width: 8%; font-size: 1em" mat-raised-button
           color="accent" (click)="onClickNext()">Next

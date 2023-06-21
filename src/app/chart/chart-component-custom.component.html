@@ -1,14 +1,39 @@
+<div class="alert alert-success" *ngIf="tradingService.isSuccessBought||tradingService.isSuccessSold"
+     style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #ffd740;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  <p>Success!</p>
+</div>
+<div class="alert alert-danger" *ngIf="tradingService.isFailedBought||tradingService.isFailedSold"
+     style="width: 20%;
+     height: 50px;
+     border-radius: 15px;
+     background-color: #dc6262;
+           color: #150a0a;
+           margin: auto;
+           align-items: center;
+           text-align: center;
+            font-family: 'Bahnschrift', sans-serif;">
+  <p>Failed! Please try again later.</p>
+</div>
 <div class="ticker">
   <h3>{{ticker}}</h3>
   <h3 style="margin-left: 60%">{{realTimePrice}}</h3>
 </div>
 
-
-
 <br>
 <div class="transactionContent">
-  <button type="button" mat-raised-button style="background: #047307; margin-left: 81.5%" color="primary" (click)="startBuyTransaction()">Buy</button>&nbsp;
-  <button *ngIf="isStockInPortfolioVar" type="button" mat-raised-button color="warn" (click)="startSellTransaction()">Sell
+  <button type="button" mat-raised-button style="background: #047307; margin-left: 81.5%" color="primary"
+          (click)="startBuyTransaction()">Buy
+  </button>&nbsp;
+  <button *ngIf="isStockInPortfolioVar" type="button" mat-raised-button color="warn" (click)="startSellTransaction()">
+    Sell
   </button>&nbsp;
 </div>
 <img style="display: block; margin: auto"
@@ -24,53 +49,102 @@
 <br>
 <mat-tab-group mat-stretch-tabs>
   <mat-tab label="Summary">
-    <div class="row summary-content" >
-      <div class="col-md summary-left text-mob">
-        <div class="summary-price" style="padding: 10px; width: 60%;">
-          <table>
-            <tr>
-              <th>High Price:</th>
-              <td>{{ highestPrice }}</td>
-            </tr>
-            <tr>
-              <th>Low Price:</th>
-              <td>{{ lowestPrice }}</td>
-            </tr>
-            <tr>
-              <th>Open Price:</th>
-              <td>{{ openPrice }}</td>
-            </tr>
-            <tr>
-              <th>Prev. Close:</th>
-              <td>{{ previousClose }}</td>
-            </tr>
-          </table>
-        </div>
+    <div class="row summary-content">
+      <div class="col-md-6 summary-left text-mob">
+        <div class="d-flex">
+          <div class="summary-price" style="padding: 10px;">
+            <table>
+              <tr>
+                <th>High Price:</th>
+                <td>{{ highestPrice }}</td>
+              </tr>
+              <tr>
+                <th>Low Price:</th>
+                <td>{{ lowestPrice }}</td>
+              </tr>
+              <tr>
+                <th>Open Price:</th>
+                <td>{{ openPrice }}</td>
+              </tr>
+              <tr>
+                <th>Prev. Close:</th>
+                <td>{{ previousClose }}</td>
+              </tr>
+            </table>
+            <div class="col-md-6 summary-chart">
+              <div id="chartDaily" *ngIf="click">
+                <apx-chart
+                  [series]="chartOptionsDaily.series!"
+                  [chart]="chartOptionsDaily.chart!"
+                  [xaxis]="chartOptionsDaily.xaxis!"
+                  [yaxis]="chartOptionsDaily.yaxis!"
+                  [title]="chartOptionsDaily.title!"
+                ></apx-chart>
+              </div>
+            </div>
+          </div>
 
-        <div class="summary-about" style="padding: 10px;">
-          <p style="text-align: center; margin-right: 70%"><strong><u>About the company</u></strong></p>
-          <div style="margin-bottom: 4px;"><strong>Name: </strong>{{ nameOfCompany }}</div>
-          <div style="margin-bottom: 4px;"><strong>Market Cap: </strong>{{ marketCap }}</div>
-          <div style="margin-bottom: 4px; max-width: 400px"><strong>Description: </strong>{{ description }}</div>
-          <div style="margin-bottom: 4px;"><strong>Webpage: </strong><a #weblink href=""
-                                                                        target="_blank">{{ webUrl }}</a></div>
+          <div class="summary-about" style="padding: 10px;">
+            <p style="text-align: center; margin-right: 70%"><strong><u>About the company</u></strong></p>
+            <div style="margin-bottom: 4px;"><strong>Name: </strong>{{ nameOfCompany }}</div>
+            <div style="margin-bottom: 4px;"><strong>Market Cap: </strong>{{ marketCap }}</div>
+            <div style="margin-bottom: 4px; max-width: 400px"><strong>Description: </strong>{{ description }}</div>
+            <div style="margin-bottom: 4px;"><strong>Webpage: </strong><a (click)="openLink(webUrl)"
+                                                                          style="cursor: pointer">{{ webUrl }}</a></div>
+          </div>
         </div>
       </div>
-
-      <div class="col-md summary-chart">
-        <div id="chart">
-          <apx-chart
-            [series]="chartOptions.series!"
-            [chart]="chartOptions.chart!"
-            [xaxis]="chartOptions.xaxis!"
-            [yaxis]="chartOptions.yaxis!"
-            [title]="chartOptions.title!"
-          ></apx-chart>
-        </div>
-      </div>
-
     </div>
   </mat-tab>
-  <mat-tab label="Top News"> Content 2</mat-tab>
-  <mat-tab label="Charts"> Content 3</mat-tab>
+
+  <mat-tab label="Top News">
+    <div class="row mt-3">
+      <div class="col-md mt-3" *ngFor="let article of articles">
+        <mat-card (click)="openLink(article.url)">
+          <mat-card-header>
+            <div mat-card-avatar>
+              <img class="avatar mat-elevation-z8" [src]=article.imageUrl>
+            </div>
+            <mat-card-title>{{ article.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p>By {{ article.author }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+
+  </mat-tab>
+
+  <mat-tab label="Charts">
+    <!--    <div id="chartHourly">-->
+    <!--      <apx-chart-->
+    <!--        [series]="chartOptionsHourly.series!"-->
+    <!--        [chart]="chartOptionsHourly.chart!"-->
+    <!--        [xaxis]="chartOptionsHourly.xaxis!"-->
+    <!--        [yaxis]="chartOptionsHourly.yaxis!"-->
+    <!--        [title]="chartOptionsHourly.title!"-->
+    <!--      ></apx-chart>-->
+    <!--    </div>-->
+
+    <div id="chartWeekly" *ngIf="click">
+      <apx-chart
+        [series]="chartOptionsWeekly.series!"
+        [chart]="chartOptionsWeekly.chart!"
+        [xaxis]="chartOptionsWeekly.xaxis!"
+        [yaxis]="chartOptionsWeekly.yaxis!"
+        [title]="chartOptionsWeekly.title!"
+      ></apx-chart>
+    </div>
+
+    <div id="chartMonthly" *ngIf="click">
+      <apx-chart
+        [series]="chartOptionsMonthly.series!"
+        [chart]="chartOptionsMonthly.chart!"
+        [xaxis]="chartOptionsMonthly.xaxis!"
+        [yaxis]="chartOptionsMonthly.yaxis!"
+        [title]="chartOptionsMonthly.title!"
+      ></apx-chart>
+    </div>
+  </mat-tab>
 </mat-tab-group>

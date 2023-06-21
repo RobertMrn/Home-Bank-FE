@@ -11,6 +11,7 @@ export class ContractDetailsComponent implements OnInit {
   isAccepted = false;
   isDeclined = false;
 
+
   constructor(private formBuilder: FormBuilder, public contractDetailsService: ContractDetailsService) { }
 
   contractDetailsForm = this.formBuilder.group({

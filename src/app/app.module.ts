@@ -49,6 +49,12 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTabsModule} from "@angular/material/tabs";
 import { PortfolioComponent } from './stock-trading/portofolio/portfolio.component';
 import { TransactionModalForSellingComponent } from './chart/transaction-modal-for-selling/transaction-modal-for-selling.component';
+import {MatCardModule} from "@angular/material/card";
+import {MatListModule} from "@angular/material/list";
+import {NgbAlertModule} from "@ng-bootstrap/ng-bootstrap";
+import { AddMoneyComponent } from './add-money/add-money.component';
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import { DialogForChangingPasswordComponent } from './login-component/dialog-for-changing-password/dialog-for-changing-password.component';
 
 @NgModule({
   declarations: [
@@ -76,7 +82,9 @@ import { TransactionModalForSellingComponent } from './chart/transaction-modal-f
     ChartComponentCustom,
     TransactionModalComponentForBuying,
     PortfolioComponent,
-    TransactionModalForSellingComponent
+    TransactionModalForSellingComponent,
+    AddMoneyComponent,
+    DialogForChangingPasswordComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -102,7 +110,11 @@ import { TransactionModalForSellingComponent } from './chart/transaction-modal-f
     NgApexchartsModule,
     FormsModule,
     MatMenuModule,
-    MatTabsModule
+    MatTabsModule,
+    MatCardModule,
+    MatListModule,
+    NgbAlertModule,
+    MatDatepickerModule
   ],
   exports: [],
   providers: [

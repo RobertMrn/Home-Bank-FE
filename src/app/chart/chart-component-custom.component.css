@@ -1,10 +1,77 @@
 p {
   font-family: Lato;
 }
-#chart {
-  max-width: 5000px;
-  margin-left: 900px;
-  margin-bottom: 100px;
+
+.summary-price,
+.summary-about {
+  display: block;
+  width: 70%;
+  padding: 10px;
+}
+
+.mat-list-item:hover {
+  background-color: #f3e9e9;
+  cursor: pointer;
+}
+
+mat-list-item{
+  margin: auto;
+  display: block;
+  cursor: pointer;
+}
+
+mat-card-title{
+  margin-left: 150px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+mat-card-content p {
+  margin-left: 150px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+mat-card-content p:first-of-type {
+  margin-bottom: 16px;
+}
+
+mat-card-content p:last-of-type {
+  font-size: 16px;
+  color: #666;
+}
+
+mat-card {
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+mat-card:hover {
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+img{
+  width: 100px;
+  margin: auto;
+  display: block;
+  border-radius: 20px;
+}
+
+.summary-chart {
+  width: 70%;
+  float: right;
+  flex-direction: column;
+}
+
+#chartDaily {
+  width: 1000px;
+  margin-left: 200px;
 }
 
 .ticker h3{
@@ -17,14 +84,3 @@ p {
   justify-content: flex-start;
 }
 
-
-
-.mat-raised-button{
-  /*display: inline;*/
-  /*height: 70px;*/
-  /*width: 40px;*/
-  /*font-size: larger;*/
-  /*background: #a80606;*/
-  /*color: #dcdcea;*/
-  /*border-radius: 10px;*/
-}

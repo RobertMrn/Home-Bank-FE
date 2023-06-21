@@ -32,6 +32,7 @@ export class HomeCustomersComponent implements OnInit {
   isDataRetrieved = false;
   dataSource = new MatTableDataSource<TableElements>();
   fileReader = '';
+  userBalance = 0;
 
   constructor(public retrieveLoansService: RetrieveLoansService, public logInService: LoginService, private route: Router,
               private photoProfileService: PhotoProfilePathService) {
@@ -44,6 +45,7 @@ export class HomeCustomersComponent implements OnInit {
   ngOnInit(): void {
     this.getLoanData();
     this.getPhotoProfilePath();
+    this.getBalance();
   }
 
   getLoanData() {
@@ -79,5 +81,18 @@ export class HomeCustomersComponent implements OnInit {
   clickTrading() {
     this.route.navigate(['stockTrading']);
   }
+
+  getBalance(){
+    this.retrieveLoansService.getBalanceForUser().subscribe({
+      next: value => {
+        this.userBalance = Number(value);
+      }
+    })
+  }
+
+  addBalance(){
+    this.route.navigate(['addMoney']);
+  }
+
 }
 

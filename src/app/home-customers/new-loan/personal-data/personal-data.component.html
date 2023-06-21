@@ -24,7 +24,7 @@
 
   <div class="row">
     <mat-form-field appearance="fill">
-      <mat-label>Please choose your family situation</mat-label>
+      <mat-label>Please choose your living situation</mat-label>
       <mat-select [formGroup]="personalDataForm" formControlName="livingSituation" required>
         <mat-option>--</mat-option>
         <mat-option *ngFor="let livingSituation of livingSituation" [value]="livingSituation">
@@ -64,7 +64,7 @@
     <mat-form-field>
       <input matInput
              formControlName="monthlyIncome"
-             placeholder="Monthly income">
+             placeholder="Monthly income (EUR)">
     </mat-form-field>
   </div>
 

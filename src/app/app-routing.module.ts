@@ -21,6 +21,7 @@ import {ChangePasswordComponent} from "./login-component/forgot-password/new-pas
 import {StockTradingComponent} from "./stock-trading/stock-trading.component";
 import {ChartComponentCustom} from "./chart/chart-component-custom.component";
 import {PortfolioComponent} from "./stock-trading/portofolio/portfolio.component";
+import {AddMoneyComponent} from "./add-money/add-money.component";
 
 const routes: Routes = [
   {path: 'login', component: LoginComponentComponent, canActivate: [LoginGuard]},
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'userDetails', component: UserDetailsComponent},
   {path: 'contractDetails', component: ContractDetailsComponent},
   {path: 'profilePage', component: ProfilePageComponent},
+  {path: 'addMoney', component: AddMoneyComponent},
   {path: 'stockTrading', component: StockTradingComponent},
   {path: 'chart', component: ChartComponentCustom},
   {path: 'portfolio', component: PortfolioComponent},

@@ -17,7 +17,7 @@ export interface TableElements {
   address: string;
   nationality: string;
   birthDate: Date;
-  role: string;
+  userRole: string;
   toDelete: string;
 }
 
@@ -30,7 +30,7 @@ export class HomeAdminComponent implements OnInit {
   userInfo = JSON.stringify(this.logInService.getDataFromToken(localStorage.getItem('response')!)).split(',');
   userName = this.userInfo[3] + ' ' + this.userInfo[4];
   dataSource = new MatTableDataSource<TableElements>();
-  displayedColumns: string[] = ['userId', 'firstName', 'lastName', 'phoneNumber', 'gender', 'address', 'nationality', 'birthDate', 'toDelete'];
+  displayedColumns: string[] = ['userId','firstName', 'lastName', 'phoneNumber', 'gender', 'address', 'nationality', 'birthDate', 'toDelete'];
   fileReader = '';
 
 
